@@ -23,14 +23,12 @@ if (any(lintr_staged)) {
   )
 }
 
-for (path in arguments$files) {
-  lints <- lintr::lint(path)
-  if (length(lints) > 0) {
-    cat("File `", path, "` is not lint free\n", sep = "")
-    rendered_lints <- capture.output(print(lints))
-    cat(rendered_lints, sep = "\n")
-    if (!arguments$warn_only) {
-      stop("File ", path, " is not lint free", call. = FALSE)
-    }
+lints <- lintr::lint_package()
+if (length(lints) > 0) {
+  cat("File `", path, "` is not lint free\n", sep = "")
+  rendered_lints <- capture.output(print(lints))
+  cat(rendered_lints, sep = "\n")
+  if (!arguments$warn_only) {
+    stop("File ", path, " is not lint free", call. = FALSE)
   }
 }
