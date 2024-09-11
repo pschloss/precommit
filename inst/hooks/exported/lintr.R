@@ -25,10 +25,10 @@ if (any(lintr_staged)) {
 
 lints <- lintr::lint_package()
 if (length(lints) > 0) {
-  cat("File `", path, "` is not lint free\n", sep = "")
+  cat("Package is not lint free\n", sep = "")
   rendered_lints <- capture.output(print(lints))
   cat(rendered_lints, sep = "\n")
   if (!arguments$warn_only) {
-    stop("File ", path, " is not lint free", call. = FALSE)
+    stop("Package is not lint free", call. = FALSE)
   }
 }
